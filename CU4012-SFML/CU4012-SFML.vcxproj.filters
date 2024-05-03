@@ -87,6 +87,9 @@
     <ClCompile Include="imgui\imgui-SFML.cpp">
       <Filter>Framework\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -175,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="Framework\TextureManager.h">
       <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

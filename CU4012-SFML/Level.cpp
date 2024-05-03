@@ -8,6 +8,15 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* v, World
 	world = w;	
 	tileManager = tm;
 	audioManager = new AudioManager();
+
+	player.setInput(input); 
+	player.setAudio(audioManager);
+
+	world->AddGameObject(player);
+
+	audioManager->addMusic("Level_Music.ogg", "bgm");
+	audioManager->addSound("Jump_Sound.ogg", "jump");
+	audioManager->playMusicbyName("bgm");
 }
 
 Level::~Level()
@@ -36,6 +45,9 @@ void Level::handleInput(float dt)
 		input->setKeyUp(sf::Keyboard::Tab);
 		gameState->setCurrentState(State::TILEEDITOR);
 	}
+
+	player.handleInput(dt); 
+
 }
 
 // Update game objects
@@ -58,7 +70,8 @@ void Level::render()
 	{
 		tileManager->render(false);
 	}
-
+	
+	window->draw(player);
 }
 
 

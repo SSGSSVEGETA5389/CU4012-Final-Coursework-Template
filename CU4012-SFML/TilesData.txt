@@ -1,8 +1,4 @@
-Platform,320.753,387.573,300,78.1,0,1,0,1,Platform.png
-Collectable,522,218,50,50,1,0,1,1,Collectable.png
-Platform,664,238,50,50,0,1,0,1,icon.png
-Wall,433.271,293.841,68.2,92.5,0,1,0,1,Wall.png
-Collectable,440,82,50,50,1,0,1,1,Collectable.png
-Collectable,557,86,50,50,1,0,1,1,Collectable.png
-Collectable,718,82,50,50,1,0,1,1,Collectable.png
-Collectable,339,208,50,50,1,0,1,1,Collectable.png
+,0,0,50,50,0,1,0,1,
+,0,0,50,50,0,1,0,1,Platform.png
+,0,0,50,50,0,1,0,1,
+,207.128,279.459,120,100,0,1,0,1,Platform.png
