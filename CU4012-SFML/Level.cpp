@@ -17,6 +17,11 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* v, World
 	audioManager->addMusic("Level_Music.ogg", "bgm");
 	audioManager->addSound("Jump_Sound.ogg", "jump");
 	audioManager->playMusicbyName("bgm");
+
+	//Background
+
+	
+
 }
 
 Level::~Level()
@@ -55,12 +60,12 @@ void Level::update(float dt)
 {
 
 	//Move the view to follow the player
-	//view->setCenter(view->getCenter().x, 360);
-	//
-	//sf::Vector2f playerPosition = player.getPosition();
-	//float newX = std::max(playerPosition.x, view->getSize().x / 2.0f);
-	//view->setCenter(newX, view->getCenter().y);
-	//window->setView(*view);
+	view->setCenter(view->getCenter().x, 360);
+	
+	sf::Vector2f playerPosition = player.getPosition();
+	float newX = std::max(playerPosition.x, view->getSize().x / 2.0f);
+	view->setCenter(newX, view->getCenter().y);
+	window->setView(*view);
 }
 
 // Render level

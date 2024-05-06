@@ -7,8 +7,8 @@ Menu::Menu(sf::RenderWindow* hwnd, Input* in, GameState* game)
 	gameState = game;
 
 
-	UIfont.loadFromFile("font/ZOMBIES REBORN.ttf");
-	titleFont.loadFromFile("font/BloodBlocks Project.ttf");
+	UIfont.loadFromFile("font/PixelTex.TTF");
+	titleFont.loadFromFile("font/StayPixelRegular-EaOxl.ttf");
 
 
 	menu_texture.loadFromFile("gfx/menu.png");
@@ -30,7 +30,7 @@ Menu::Menu(sf::RenderWindow* hwnd, Input* in, GameState* game)
 
 	Title.setFont(titleFont);
 	Title.setFillColor(sf::Color::Magenta);
-	Title.setString("My Game");
+	Title.setString("Urban Hippo Hustle:Downtown Dash");
 	Title.setOutlineColor(sf::Color::Black);
 	Title.setCharacterSize(70);
 	Title.setPosition(500, 50);

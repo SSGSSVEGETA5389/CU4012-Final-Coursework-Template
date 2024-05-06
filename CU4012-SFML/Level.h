@@ -23,5 +23,11 @@ public:
 private:
 	// Default variables for level class.
 
+
+	//Player
 	Player player; 
+
+	//Background
+
+	// Background bg[3];
 };
