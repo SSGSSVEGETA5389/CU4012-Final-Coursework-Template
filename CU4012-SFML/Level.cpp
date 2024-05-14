@@ -1,4 +1,8 @@
 #include "Level.h"
+#include "Background.h"
+#include "Player.h"
+#include "Menu.h"
+#include "TileEditor.h"
 Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* v, World* w, TileManager* tm)
 {
 	window = hwnd;
@@ -18,9 +22,43 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* v, World
 	audioManager->addSound("Jump_Sound.ogg", "jump");
 	audioManager->playMusicbyName("bgm");
 
-	//Background
+	// Background 
 
-	
+	for (size_t i = 0; i < 3; i++)
+	{
+		bg[i].setScale(3, 3);
+		bg[i].setPosition(bg[i].getSize().x * i, 0);
+	}
+	e1.setCustomTexture("gfx/Enemy.png");
+
+	// Write a for loop for setting the enemyArray variables texture 
+	for (size_t i = 0; i < 4; i++)
+	{
+		enemyArray[i].setCustomTexture("gfx/Enemy.png");
+		enemyArray[i].setAlive(true);
+		world->AddGameObject(enemyArray[i]);
+
+	}
+
+	//Enemy one 
+	enemyArray[0].setPosition(100, 70);
+	enemyArray[0].setVelocity(100, 0);
+
+	//Enemy two
+	enemyArray[1].setPosition(400, 400);
+	enemyArray[1].setVelocity(100, 0);
+
+	//Enemy three 
+	enemyArray[2].setPosition(800, 500);
+	enemyArray[2].setVelocity(100, 0);
+
+	//Enemy four
+	enemyArray[3].setPosition(850, 600);
+	enemyArray[3].setVelocity(100, 0);
+
+
+
+
 
 }
 

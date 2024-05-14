@@ -8,8 +8,10 @@
 #include "Framework/TileManager.h"
 #include "Framework/AudioManager.h"
 #include "Player.h"
+#include "Background.h"
 #include <string>
 #include <iostream>
+#include "Enemy.h"
 
 class Level : public BaseLevel{
 public:
@@ -27,7 +29,14 @@ private:
 	//Player
 	Player player; 
 
+	//Enemy
+
+	Enemy e1; 
+	int NumberOfEnemies = 10; 
+	Enemy enemyArray[4]; 
+
+
 	//Background
 
-	// Background bg[3];
+	Background bg[5];
 };
