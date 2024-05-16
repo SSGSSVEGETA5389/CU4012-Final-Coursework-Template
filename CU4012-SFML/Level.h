@@ -15,7 +15,7 @@
 
 class Level : public BaseLevel{
 public:
-	Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* view ,World* w, TileManager* tm, GameOver gm, WinningScreen wm);
+	Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* view ,World* w, TileManager* tm);
 	~Level();
 
 	void handleInput(float dt) override;
@@ -28,6 +28,7 @@ private:
 
 	//Player
 	Player player; 
+	sf::Text CollectablesCollectedText;
 
 	//Enemy
 

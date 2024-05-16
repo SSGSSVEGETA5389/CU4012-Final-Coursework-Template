@@ -12,6 +12,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* v, World
 	world = w;	
 	tileManager = tm;
 	audioManager = new AudioManager();
+	
 
 	player.setInput(input); 
 	player.setAudio(audioManager);
@@ -56,7 +57,12 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* v, World
 	enemyArray[3].setPosition(850, 600);
 	enemyArray[3].setVelocity(100, 0);
 
-
+	//Collectables Collected Text
+	CollectablesCollectedText.setFont(font);
+	CollectablesCollectedText.setCharacterSize(24);
+	CollectablesCollectedText.setFillColor(sf::Color::Green);
+	CollectablesCollectedText.setPosition(window->getSize().x, 0);
+	CollectablesCollectedText.setString("Collected: ");
 
 
 
