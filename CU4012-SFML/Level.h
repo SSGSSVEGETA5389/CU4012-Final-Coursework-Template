@@ -15,7 +15,7 @@
 
 class Level : public BaseLevel{
 public:
-	Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* view ,World* w, TileManager* tm);
+	Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* view ,World* w, TileManager* tm, GameOver gm, WinningScreen wm);
 	~Level();
 
 	void handleInput(float dt) override;

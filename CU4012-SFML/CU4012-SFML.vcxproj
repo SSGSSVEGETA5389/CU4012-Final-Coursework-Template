@@ -150,6 +150,7 @@
     <ClCompile Include="Framework\Tiles.cpp" />
     <ClCompile Include="Framework\Vector.cpp" />
     <ClCompile Include="Framework\World.cpp" />
+    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="imgui\imgui-SFML.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
@@ -161,6 +162,7 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="TileEditor.cpp" />
+    <ClCompile Include="WinningScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
@@ -182,6 +184,7 @@
     <ClInclude Include="Framework\Utilities.h" />
     <ClInclude Include="Framework\Vector.h" />
     <ClInclude Include="Framework\World.h" />
+    <ClInclude Include="GameOver.h" />
     <ClInclude Include="imgui\imconfig-SFML.h" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui-SFML.h" />
@@ -196,6 +199,7 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="TileEditor.h" />
+    <ClInclude Include="WinningScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Framework\DO_NOT_EDIT.txt" />

@@ -104,6 +104,53 @@ void Level::update(float dt)
 	float newX = std::max(playerPosition.x, view->getSize().x / 2.0f);
 	view->setCenter(newX, view->getCenter().y);
 	window->setView(*view);
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (enemyArray[i].CollisionWithTag("Player"))
+		{
+			std::cout << enemyArray[i].getCollisionDirection() << std::endl;
+			if (enemyArray[i].getCollisionDirection() == "Up")
+			{
+				enemyArray[i].setAlive(false);
+				world->RemoveGameObject(enemyArray[i]);
+			}
+			else
+			{
+				std::cout << "Player hit enemy from the side\n";
+				Player.setPosition(100, 100);
+			}
+		}
+		else if (enemyArray[i].CollisionWithTag("Wall"))
+		{
+			enemyArray[i].setVelocity(-enemyArray[i].getVelocity().x, enemyArray[i].getVelocity().y);
+		}
+	}
+	if (Player.CollisionWithTag("Collectable"))
+	{
+		// Player is Colliding with Collectable
+		Player.AddCollectable(1); // Increment Collectable count
+		tileManager.RemoveCollectable(); // Remove the collectable
+
+		// Update the CollectablesCollectedText to display the new number of rings collected
+		int collectableCount = Player.getCollectables(); // Assume p1 is the player object and has the getCollectablesCount method
+		CollectablesCollectedText.setString("Collected: " + std::to_string(collectableCount));
+	}
+
+	//When the player goes over a certain position on the Y axis (Downwards), this should trigger a game over screen.
+	if (Player.getPosition().y > 1500)
+	{
+		Reset();
+		gameState->setCurrentState(State::GAMEOVER);
+	}
+
+	//When the player goes over a certain position on the X axis (Right), this should trigger the winning screen.
+
+	if (Player.getPosition().x > 3200)
+	{
+		Reset();
+		gameState->setCurrentState(State::WINNER);
+	}
 }
 
 // Render level
