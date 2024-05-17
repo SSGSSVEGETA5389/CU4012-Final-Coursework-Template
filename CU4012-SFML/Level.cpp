@@ -14,10 +14,10 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* v, World
 	audioManager = new AudioManager();
 	
 
-	player.setInput(input); 
-	player.setAudio(audioManager);
+	Player.setInput(input); 
+	Player.setAudio(audioManager);
 
-	world->AddGameObject(player);
+	world->AddGameObject(Player);
 
 	audioManager->addMusic("Level_Music.ogg", "bgm");
 	audioManager->addSound("Jump_Sound.ogg", "jump");
@@ -95,7 +95,7 @@ void Level::handleInput(float dt)
 		gameState->setCurrentState(State::TILEEDITOR);
 	}
 
-	player.handleInput(dt); 
+	Player.handleInput(dt); 
 
 }
 
@@ -106,7 +106,7 @@ void Level::update(float dt)
 	//Move the view to follow the player
 	view->setCenter(view->getCenter().x, 360);
 	
-	sf::Vector2f playerPosition = player.getPosition();
+	sf::Vector2f playerPosition = Player.getPosition();
 	float newX = std::max(playerPosition.x, view->getSize().x / 2.0f);
 	view->setCenter(newX, view->getCenter().y);
 	window->setView(*view);
@@ -136,7 +136,7 @@ void Level::update(float dt)
 	{
 		// Player is Colliding with Collectable
 		Player.AddCollectable(1); // Increment Collectable count
-		tileManager.RemoveCollectable(); // Remove the collectable
+		tileManager->RemoveCollectable(); // Remove the collectable
 
 		// Update the CollectablesCollectedText to display the new number of rings collected
 		int collectableCount = Player.getCollectables(); // Assume p1 is the player object and has the getCollectablesCount method
@@ -146,7 +146,7 @@ void Level::update(float dt)
 	//When the player goes over a certain position on the Y axis (Downwards), this should trigger a game over screen.
 	if (Player.getPosition().y > 1500)
 	{
-		Reset();
+		//Reset();
 		gameState->setCurrentState(State::GAMEOVER);
 	}
 
@@ -154,7 +154,7 @@ void Level::update(float dt)
 
 	if (Player.getPosition().x > 3200)
 	{
-		Reset();
+		//Reset();
 		gameState->setCurrentState(State::WINNER);
 	}
 }
@@ -167,7 +167,7 @@ void Level::render()
 		tileManager->render(false);
 	}
 	
-	window->draw(player);
+	window->draw(Player);
 }
 
 

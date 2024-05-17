@@ -27,7 +27,7 @@ private:
 
 
 	//Player
-	Player player; 
+	Player Player; 
 	sf::Text CollectablesCollectedText;
 
 	//Enemy
@@ -40,4 +40,8 @@ private:
 	//Background
 
 	Background bg[5];
+
+	//Font 
+
+	sf::Font font; 
 };

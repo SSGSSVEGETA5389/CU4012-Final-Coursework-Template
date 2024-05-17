@@ -2,6 +2,7 @@
 
 Player::Player()
 {
+	health = 100; 
 	speed = 200;
 
 	HippoSpriteSheet.loadFromFile("gfx/HippoSpriteSheet.png");
@@ -81,6 +82,12 @@ void Player::handleInput(float dt)
 
 	}
 	currentAnimation->animate(dt);
+
+
+}
+
+void Player::update(float dt)
+{
 
 
 }
