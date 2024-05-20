@@ -1,9 +1,6 @@
-,0,0,50,50,0,1,0,1,
-,0,0,50,50,0,1,0,1,Platform.png
-,408.128,420.959,308.5,100,0,1,0,1,Platform.png
+,0.859226,23.9345,50,50,0,1,0,1,Platform.png
+,405.128,509.459,308.5,100,0,1,0,1,Platform.png
 ,116.128,279.459,140.8,100,0,1,0,1,Platform.png
-Collectable,471,353.613,50,50,1,0,1,1,Collectable.png
-Collectable,587,353.613,50,50,1,0,1,1,Collectable.png
 ,843,565.546,79,50,0,1,0,1,Platform.png
 Collectable,871,507.746,50,50,1,0,1,1,Collectable.png
 ,1060,476.5,116.8,48.6,0,1,0,1,Platform.png
@@ -23,3 +20,5 @@ Collectable,1259,311.5,50,50,1,0,1,1,Collectable.png
 ,2848.32,287.053,75,60.8,0,1,0,1,Platform.png
 Checkpoint,3072.39,295.748,50,50,1,1,0,1,Platform.png
 Collectable,2868.65,228.221,50,50,1,0,1,1,Collectable.png
+Wall,716.456,484.49,18.4,28,1,1,0,1,
+Wall,376.464,488.498,18.4,28,1,1,0,1,

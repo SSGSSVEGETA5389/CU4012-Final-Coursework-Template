@@ -11,10 +11,6 @@ Background::Background()
 
     // Set initial position
     setPosition(0, 0);
-
-
-
-
 }
 
 Background::~Background()

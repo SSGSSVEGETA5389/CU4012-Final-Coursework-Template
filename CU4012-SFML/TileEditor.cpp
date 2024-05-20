@@ -74,7 +74,6 @@ void TileEditor::render()
 	if(isDragging) window->draw(mouseCurosorGrab);
 	window->setView(*view);
 	tileManager->render(true);
-
 	tileManager->DrawImGui();
 
 }

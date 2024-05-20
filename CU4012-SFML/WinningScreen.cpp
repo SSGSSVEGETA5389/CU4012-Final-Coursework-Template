@@ -103,7 +103,7 @@ void WinningScreen::MoveDown()
 	}
 
 }
-int WinningScreen::handleInput(float dt)
+void WinningScreen::handleInput(float dt)
 {
 	// Keyboard handling for menu navigation
 	if (input->isKeyDown(sf::Keyboard::Up)) {
@@ -138,9 +138,6 @@ int WinningScreen::handleInput(float dt)
 			input->setLeftMouse(Input::MouseState::UP); // Assuming you have a method to reset the mouse state
 		}
 	}
-
-	return 0; // Return value can be used if needed for further input handling logic
-
 }
 
 void WinningScreen::render()

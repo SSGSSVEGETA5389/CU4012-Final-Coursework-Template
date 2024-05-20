@@ -19,7 +19,7 @@ Player::Player()
 	walk.addFrame(sf::IntRect(171, 9, 23, 36));
 	walk.setFrameSpeed(1.f / 10.f);
 
-	
+	setTag("Player");
 
 	//Duck
 	duck.addFrame(sf::IntRect(254, 71, 34, 29));
@@ -28,7 +28,7 @@ Player::Player()
 
 	currentAnimation = &walk;
 
-
+	numberOfCollectables = 0;
 }
 
 void Player::handleInput(float dt)

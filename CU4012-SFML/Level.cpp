@@ -13,29 +13,31 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* v, World
 	tileManager = tm;
 	audioManager = new AudioManager();
 	
+	if (!font.loadFromFile("font/arial.ttf")) {
+		std::cout << "error loading font" << std::endl;
+	};
 
 	Player.setInput(input); 
 	Player.setAudio(audioManager);
 
 	world->AddGameObject(Player);
 
-	audioManager->addMusic("Level_Music.ogg", "bgm");
-	audioManager->addSound("Jump_Sound.ogg", "jump");
+	audioManager->addMusic("sfx/Level_Music.ogg", "bgm");
+	audioManager->addSound("sfx/Jump_Sound.ogg", "jump");
 	audioManager->playMusicbyName("bgm");
 
 	// Background 
 
 	for (size_t i = 0; i < 3; i++)
 	{
-		bg[i].setScale(3, 3);
 		bg[i].setPosition(bg[i].getSize().x * i, 0);
+		bg[i].setScale(3, 3);
 	}
-	e1.setCustomTexture("gfx/Enemy.png");
 
-	// Write a for loop for setting the enemyArray variables texture 
+	 // Write a for loop for setting the enemyArray variables texture 
 	for (size_t i = 0; i < 4; i++)
 	{
-		enemyArray[i].setCustomTexture("gfx/Enemy.png");
+		//enemyArray[i].setCustomTexture("gfx/Enemy.png");
 		enemyArray[i].setAlive(true);
 		world->AddGameObject(enemyArray[i]);
 
@@ -63,8 +65,6 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* v, World
 	CollectablesCollectedText.setFillColor(sf::Color::Green);
 	CollectablesCollectedText.setPosition(window->getSize().x, 0);
 	CollectablesCollectedText.setString("Collected: ");
-
-
 
 }
 
@@ -102,28 +102,25 @@ void Level::handleInput(float dt)
 // Update game objects
 void Level::update(float dt)
 {
+	sf::Vector2f viewSize = sf::Vector2f(window->getSize().x, window->getSize().y);
 
-	//Move the view to follow the player
-	view->setCenter(view->getCenter().x, 360);
-	
-	sf::Vector2f playerPosition = Player.getPosition();
-	float newX = std::max(playerPosition.x, view->getSize().x / 2.0f);
-	view->setCenter(newX, view->getCenter().y);
-	window->setView(*view);
+	CollectablesCollectedText.setPosition(view->getCenter().x - viewSize.x / 14, view->getCenter().y - viewSize.y / 2);
+
+
 
 	for (int i = 0; i < 4; i++)
 	{
 		if (enemyArray[i].CollisionWithTag("Player"))
 		{
 			std::cout << enemyArray[i].getCollisionDirection() << std::endl;
-			if (enemyArray[i].getCollisionDirection() == "Up")
+			if (enemyArray[i].getCollisionDirection() == "Down")
 			{
 				enemyArray[i].setAlive(false);
 				world->RemoveGameObject(enemyArray[i]);
 			}
 			else
 			{
-				std::cout << "Player hit enemy from the side\n";
+				//std::cout << "Player hit enemy from the side\n";
 				Player.setPosition(100, 100);
 			}
 		}
@@ -146,7 +143,7 @@ void Level::update(float dt)
 	//When the player goes over a certain position on the Y axis (Downwards), this should trigger a game over screen.
 	if (Player.getPosition().y > 1500)
 	{
-		//Reset();
+		//Reset(); 
 		gameState->setCurrentState(State::GAMEOVER);
 	}
 
@@ -157,17 +154,39 @@ void Level::update(float dt)
 		//Reset();
 		gameState->setCurrentState(State::WINNER);
 	}
+
+	//Move the view to follow the player
+	view->setCenter(view->getCenter().x, 520);
+
+	sf::Vector2f playerPosition = Player.getPosition();
+	float newX = std::max(playerPosition.x, view->getSize().x / 2.0f);
+	view->setCenter(newX, view->getCenter().y);
+	window->setView(*view);
 }
 
 // Render level
 void Level::render()
 {
+
+	for (size_t i = 0; i < 3; i++)
+	{
+		window->draw(bg[i]);
+	}
+
 	if (gameState->getCurrentState() == State::LEVEL)
 	{
 		tileManager->render(false);
 	}
-	
 	window->draw(Player);
+	for (size_t i = 0; i < 4; i++)
+	{
+		if (enemyArray[i].isAlive())
+		{
+			window->draw(enemyArray[i]);
+		}
+	}
+	window->draw(CollectablesCollectedText);
+
 }
 
 
