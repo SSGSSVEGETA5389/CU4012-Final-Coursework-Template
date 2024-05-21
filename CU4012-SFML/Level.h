@@ -9,6 +9,7 @@
 #include "Framework/AudioManager.h"
 #include "Player.h"
 #include "Background.h"
+#include "PauseScreen.h"
 #include <string>
 #include <iostream>
 #include "Enemy.h"
@@ -51,7 +52,7 @@ private:
 	//Pause screen stuff
 
 	sf::RenderWindow& window;
-	
+	PauseScreen pauseScreen;
 
 	void processEvents();
 	
