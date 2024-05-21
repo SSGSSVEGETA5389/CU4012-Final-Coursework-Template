@@ -63,7 +63,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* v, World
 	CollectablesCollectedText.setFont(font);
 	CollectablesCollectedText.setCharacterSize(24);
 	CollectablesCollectedText.setFillColor(sf::Color::Green);
-	CollectablesCollectedText.setPosition(window->getSize().x, 0);
+	CollectablesCollectedText.setPosition(window.getSize().x, 0);
 	CollectablesCollectedText.setString("Collected: ");
 
 }
@@ -102,7 +102,7 @@ void Level::handleInput(float dt)
 // Update game objects
 void Level::update(float dt)
 {
-	sf::Vector2f viewSize = sf::Vector2f(window->getSize().x, window->getSize().y);
+	sf::Vector2f viewSize = sf::Vector2f(window.getSize().x, window.getSize().y);
 
 	CollectablesCollectedText.setPosition(view->getCenter().x - viewSize.x / 14, view->getCenter().y - viewSize.y / 2);
 
@@ -161,21 +161,10 @@ void Level::update(float dt)
 	sf::Vector2f playerPosition = Player.getPosition();
 	float newX = std::max(playerPosition.x, view->getSize().x / 2.0f);
 	view->setCenter(newX, view->getCenter().y);
-	window->setView(*view);
+	window.setView(*view);
 }
 
-void Level::processEvents() {
-	sf::Event event;
-	while (window.pollEvent(event)) {
-		if (event.type == sf::Event::Closed) {
-			window.close();
-		}
 
-		pauseScreen.handleEvent(event);
-
-		// Other event handling related to the game
-	}
-}
 
 
 // Render level
@@ -184,33 +173,28 @@ void Level::render()
 
 	for (size_t i = 0; i < 3; i++)
 	{
-		window->draw(bg[i]);
+		window.draw(bg[i]);
 	}
 
 	if (gameState->getCurrentState() == State::LEVEL)
 	{
 		tileManager->render(false);
 	}
-	window->draw(Player);
+	window.draw(Player);
 	for (size_t i = 0; i < 4; i++)
 	{
 		if (enemyArray[i].isAlive())
 		{
-			window->draw(enemyArray[i]);
+			window.draw(enemyArray[i]);
 		}
 	}
-	window->draw(CollectablesCollectedText);
+	window.draw(CollectablesCollectedText);
 
 	{
 		window.clear();
 
-		// Render game objects here
 
-		if (pauseScreen.getIsPaused()) {
-			pauseScreen.update();
-		}
-
-		window.display();
+		window->display();
 	}
 	
 }
@@ -223,14 +207,5 @@ void Level::adjustViewToWindowSize(unsigned int width, unsigned int height)
 	view->setCenter(static_cast<float>(width) / 2, static_cast<float>(height) / 2);
 }
 
-void Level::run() {
-	while (window.isOpen()) {
-		processEvents();
-		if (!pauseScreen.getIsPaused()) {
-			update();
-		}
-		render();
-	}
-}
 
 
