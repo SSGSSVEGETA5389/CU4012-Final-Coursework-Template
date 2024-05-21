@@ -4,6 +4,7 @@
 #include "Menu.h"
 #include "TileEditor.h"
 Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* v, World* w, TileManager* tm)
+
 {
 	window = hwnd;
 	input = in;

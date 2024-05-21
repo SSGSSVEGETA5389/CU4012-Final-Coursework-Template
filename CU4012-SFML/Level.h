@@ -23,7 +23,7 @@ public:
 	void render();
 	void adjustViewToWindowSize(unsigned int width, unsigned int height);
 	void Reset();
-	void run();
+	
 
 private:
 	// Default variables for level class.
@@ -53,7 +53,7 @@ private:
 	sf::RenderWindow& window;
 	
 
-	void processEvents();
+	
 	
 };
 
