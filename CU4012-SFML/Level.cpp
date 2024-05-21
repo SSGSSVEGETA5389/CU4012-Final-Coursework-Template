@@ -3,22 +3,21 @@
 #include "Player.h"
 #include "Menu.h"
 #include "TileEditor.h"
-Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* v, World* w, TileManager* tm)
-
+Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, sf::View* v, World* w, TileManager* tm)
 {
 	window = hwnd;
 	input = in;
 	gameState = gs;
 	view = v;
-	world = w;	
+	world = w;
 	tileManager = tm;
 	audioManager = new AudioManager();
-	
+
 	if (!font.loadFromFile("font/arial.ttf")) {
 		std::cout << "error loading font" << std::endl;
 	};
 
-	Player.setInput(input); 
+	Player.setInput(input);
 	Player.setAudio(audioManager);
 
 	world->AddGameObject(Player);
@@ -35,7 +34,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* v, World
 		bg[i].setScale(3, 3);
 	}
 
-	 // Write a for loop for setting the enemyArray variables texture 
+	// Write a for loop for setting the enemyArray variables texture 
 	for (size_t i = 0; i < 4; i++)
 	{
 		//enemyArray[i].setCustomTexture("gfx/Enemy.png");
@@ -64,7 +63,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* v, World
 	CollectablesCollectedText.setFont(font);
 	CollectablesCollectedText.setCharacterSize(24);
 	CollectablesCollectedText.setFillColor(sf::Color::Green);
-	CollectablesCollectedText.setPosition(window.getSize().x, 0);
+	CollectablesCollectedText.setPosition(window->getSize().x, 0);
 	CollectablesCollectedText.setString("Collected: ");
 
 }
@@ -96,14 +95,14 @@ void Level::handleInput(float dt)
 		gameState->setCurrentState(State::TILEEDITOR);
 	}
 
-	Player.handleInput(dt); 
+	Player.handleInput(dt);
 
 }
 
 // Update game objects
 void Level::update(float dt)
 {
-	sf::Vector2f viewSize = sf::Vector2f(window.getSize().x, window.getSize().y);
+	sf::Vector2f viewSize = sf::Vector2f(window->getSize().x, window->getSize().y);
 
 	CollectablesCollectedText.setPosition(view->getCenter().x - viewSize.x / 14, view->getCenter().y - viewSize.y / 2);
 
@@ -162,11 +161,8 @@ void Level::update(float dt)
 	sf::Vector2f playerPosition = Player.getPosition();
 	float newX = std::max(playerPosition.x, view->getSize().x / 2.0f);
 	view->setCenter(newX, view->getCenter().y);
-	window.setView(*view);
+	window->setView(*view);
 }
-
-
-
 
 // Render level
 void Level::render()
@@ -174,39 +170,31 @@ void Level::render()
 
 	for (size_t i = 0; i < 3; i++)
 	{
-		window.draw(bg[i]);
+		window->draw(bg[i]);
 	}
 
 	if (gameState->getCurrentState() == State::LEVEL)
 	{
 		tileManager->render(false);
 	}
-	window.draw(Player);
+	window->draw(Player);
 	for (size_t i = 0; i < 4; i++)
 	{
 		if (enemyArray[i].isAlive())
 		{
-			window.draw(enemyArray[i]);
+			window->draw(enemyArray[i]);
 		}
 	}
-	window.draw(CollectablesCollectedText);
+	window->draw(CollectablesCollectedText);
 
-	{
-		window.clear();
-
-
-		window->display();
-	}
-	
 }
 
 
-void Level::adjustViewToWindowSize(unsigned int width, unsigned int height) 
+void Level::adjustViewToWindowSize(unsigned int width, unsigned int height)
 {
 	sf::FloatRect visibleArea(0, 0, static_cast<float>(width), static_cast<float>(height));
 	view->setSize(static_cast<float>(width), static_cast<float>(height));
 	view->setCenter(static_cast<float>(width) / 2, static_cast<float>(height) / 2);
 }
-
 
 
