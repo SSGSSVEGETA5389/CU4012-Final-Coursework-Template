@@ -164,6 +164,20 @@ void Level::update(float dt)
 	window->setView(*view);
 }
 
+void Level::processEvents() {
+	sf::Event event;
+	while (window.pollEvent(event)) {
+		if (event.type == sf::Event::Closed) {
+			window.close();
+		}
+
+		pauseScreen.handleEvent(event);
+
+		// Other event handling related to the game
+	}
+}
+
+
 // Render level
 void Level::render()
 {
@@ -187,6 +201,18 @@ void Level::render()
 	}
 	window->draw(CollectablesCollectedText);
 
+	{
+		window.clear();
+
+		// Render game objects here
+
+		if (pauseScreen.getIsPaused()) {
+			pauseScreen.update();
+		}
+
+		window.display();
+	}
+	
 }
 
 
@@ -196,3 +222,15 @@ void Level::adjustViewToWindowSize(unsigned int width, unsigned int height)
 	view->setSize(static_cast<float>(width), static_cast<float>(height));
 	view->setCenter(static_cast<float>(width) / 2, static_cast<float>(height) / 2);
 }
+
+void Level::run() {
+	while (window.isOpen()) {
+		processEvents();
+		if (!pauseScreen.getIsPaused()) {
+			update();
+		}
+		render();
+	}
+}
+
+

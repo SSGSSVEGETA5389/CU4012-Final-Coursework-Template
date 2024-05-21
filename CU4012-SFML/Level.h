@@ -9,6 +9,7 @@
 #include "Framework/AudioManager.h"
 #include "Player.h"
 #include "Background.h"
+#include "PauseScreen.h"
 #include <string>
 #include <iostream>
 #include "Enemy.h"
@@ -22,6 +23,9 @@ public:
 	void update(float dt) override;
 	void render();
 	void adjustViewToWindowSize(unsigned int width, unsigned int height);
+	void Reset();
+	void run();
+
 private:
 	// Default variables for level class.
 
@@ -44,4 +48,16 @@ private:
 	//Font 
 
 	sf::Font font; 
+
+	//Pause screen stuff
+
+	sf::RenderWindow& window;
+	PauseScreen pauseScreen;
+
+	void processEvents();
+	
 };
+
+
+
+	
