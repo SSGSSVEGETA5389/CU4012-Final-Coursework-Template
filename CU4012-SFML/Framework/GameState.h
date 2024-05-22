@@ -9,11 +9,16 @@ enum class State { MENU, LEVEL, TILEEDITOR,PAUSE, CREDITS, GAMEOVER, WINNER };
 class GameState
 {
 public:
-	// Set the current state
+	// Set the current state.
 	void setCurrentState(State s);
 	// Returns the current state.
 	State getCurrentState();
+	
+	
+
 
 protected:
 	State currentState;
+	bool paused;
+	
 };

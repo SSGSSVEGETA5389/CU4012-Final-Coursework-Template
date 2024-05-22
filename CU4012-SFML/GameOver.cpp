@@ -81,7 +81,7 @@ void GameOver::updateVisualFeedback()
 			UIText[i].text.setFillColor(sf::Color::Red); // Highlight selected item
 		}
 		else {
-			UIText[i].text.setFillColor(sf::Color::White); // Default color for non-selected items
+			UIText[i].text.setFillColor(sf::Color::White); // Default colour for non-selected items
 		}
 	}
 }

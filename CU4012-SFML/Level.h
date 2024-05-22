@@ -48,9 +48,8 @@ private:
 
 	sf::Font font; 
 
-	//Pause screen stuff
+	
 
-	sf::RenderWindow& window;
 	
 
 	
