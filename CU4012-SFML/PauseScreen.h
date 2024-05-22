@@ -3,11 +3,12 @@
 #include "Framework/Input.h"
 #include "Framework/GameState.h"
 #include"Framework/Collision.h"
+#include "Framework/BaseLevel.h"
 #include "Framework/UI.h"
 #include <string>
 #include <iostream>
 #include"Level.h"
-class PauseScreen : public GameObject
+class PauseScreen : public BaseLevel
 {
 public:
 
@@ -22,9 +23,6 @@ public:
 	void updateVisualFeedback();
 	int GetPressedItem() { return selectedItem; }
 
-	sf::RenderWindow* window;
-	Input* input;
-	GameState* gameState;
 
 	int selectedItem;
 	sf::Font UIfont;

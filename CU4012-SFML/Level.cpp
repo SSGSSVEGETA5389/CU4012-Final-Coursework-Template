@@ -94,6 +94,11 @@ void Level::handleInput(float dt)
 		input->setKeyUp(sf::Keyboard::Tab);
 		gameState->setCurrentState(State::TILEEDITOR);
 	}
+	if (input->isKeyDown(sf::Keyboard::Escape))
+	{
+		gameState->setCurrentState(State::PAUSE);
+
+	}
 
 	Player.handleInput(dt);
 
@@ -154,6 +159,8 @@ void Level::update(float dt)
 		//Reset();
 		gameState->setCurrentState(State::WINNER);
 	}
+
+
 
 	//Move the view to follow the player
 	view->setCenter(view->getCenter().x, 520);

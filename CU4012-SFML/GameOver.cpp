@@ -148,7 +148,7 @@ int GameOver::handleInput(float dt)
 
 void GameOver::render()
 {
-	beginDraw();
+	
 	window->draw(gameOver_sprite);
 	window->draw(Title);
 	for (int i = 0; i < 2; i++)
@@ -165,7 +165,7 @@ void GameOver::render()
 			window->draw(UIText[i].getDebugShape());
 		}
 	}
-	endDraw();
+	
 }
 
 

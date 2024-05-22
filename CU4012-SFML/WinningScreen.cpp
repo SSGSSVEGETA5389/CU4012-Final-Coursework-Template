@@ -142,7 +142,7 @@ void WinningScreen::handleInput(float dt)
 
 void WinningScreen::render()
 {
-	beginDraw();
+	//beginDraw();
 	window->draw(winner_sprite);
 	window->draw(Title);
 	for (int i = 0; i < 2; i++)
@@ -159,7 +159,8 @@ void WinningScreen::render()
 			window->draw(UIText[i].getDebugShape());
 		}
 	}
-	endDraw();
+	//endDraw()
+	
 }
 
 
