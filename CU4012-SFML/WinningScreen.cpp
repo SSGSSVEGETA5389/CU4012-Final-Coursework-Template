@@ -159,8 +159,8 @@ void WinningScreen::render()
 			window->draw(UIText[i].getDebugShape());
 		}
 	}
-	//endDraw()
-	
+	//endDraw();
+
 }
 
 
