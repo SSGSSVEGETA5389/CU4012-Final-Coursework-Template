@@ -13,7 +13,7 @@ class PauseScreen : public BaseLevel
 public:
 
 	PauseScreen(sf::RenderWindow* hwnd, Input* in, GameState* game);
-	~PauseScreen(); 
+	~PauseScreen();
 
 	void handleInput(float dt);
 	void update(float dt);
@@ -31,17 +31,16 @@ public:
 	sf::Text Title;
 	UI UIText[2];
 
-	void beginDraw();
-	void endDraw();
+	//void beginDraw();
+	//void endDraw();
 
-	sf::Sprite pause_sprite; 
+	sf::Sprite pause_sprite;
 	sf::Texture pause_texture;
 
-	sf::Vector2i MousePos; 
+	sf::Vector2i MousePos;
 
-	bool DebugRender; 
+	bool DebugRender;
 	bool mouseOverAnyItem;
 
 };
-
 

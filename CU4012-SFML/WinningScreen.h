@@ -4,10 +4,11 @@
 #include "Framework/GameState.h"
 #include"Framework/Collision.h"
 #include "Framework/UI.h"
+#include "Framework/BaseLevel.h"
 #include <string>
 #include <iostream>
 #include"Level.h"
-class WinningScreen : public GameObject
+class WinningScreen : public BaseLevel
 {
 public:
 	WinningScreen(sf::RenderWindow* hwnd, Input* in, GameState* game);

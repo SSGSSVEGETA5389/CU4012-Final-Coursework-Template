@@ -21,16 +21,17 @@ WinningScreen::WinningScreen(sf::RenderWindow* hwnd, Input* in, GameState* game)
 
 
 	Title.setFont(titleFont);
-	Title.setFillColor(sf::Color::Magenta);
-	Title.setString("Well done!");
+	Title.setFillColor(sf::Color::Green);
+	Title.setString("Thank you for playing my game!");
 	Title.setOutlineColor(sf::Color::Black);
 	Title.setCharacterSize(70);
 	Title.setPosition(500, 50);
 
+	
 
 	UIText[0].text.setFont(UIfont);
 	UIText[0].text.setFillColor(sf::Color::Red);
-	UIText[0].text.setString("Play again");
+	UIText[0].text.setString("Back to menu");
 	UIText[0].text.setPosition(sf::Vector2f(600, 120));
 	UIText[0].setCollisionBox(sf::FloatRect(600, 120, 100, 30));
 
@@ -122,7 +123,8 @@ void WinningScreen::handleInput(float dt)
 		case 0:
 			std::cout << "Restart has been Pressed" << std::endl;
 
-			gameState->setCurrentState(State::LEVEL);
+			//Pressing the restart button will be bought back to the menu.
+			gameState->setCurrentState(State::MENU);
 			break;
 		case 1:
 			std::cout << "Exit Button has been pressed" << std::endl;
@@ -142,7 +144,7 @@ void WinningScreen::handleInput(float dt)
 
 void WinningScreen::render()
 {
-	//beginDraw();
+	//beginDraw(); //Having this and endDraw(); breaks the winning screen state loading up, it also removed all the coins, but the tile editor can add them back.
 	window->draw(winner_sprite);
 	window->draw(Title);
 	for (int i = 0; i < 2; i++)

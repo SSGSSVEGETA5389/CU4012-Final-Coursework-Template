@@ -90,28 +90,28 @@ void PauseScreen::handleInput(float dt)
 
 void PauseScreen::update(float dt) {
 
-selectedItem;
-mouseOverAnyItem = false; // Reset this flag each frame
+	selectedItem;
+	mouseOverAnyItem = false; // Reset this flag each frame
 
-// Update mouse position
-MousePos.x = input->getMouseX();
-MousePos.y = input->getMouseY();
- 
-for (int i = 0; i < 2; i++) {
-	if (Collision::checkBoundingBox(UIText[i].getCollisionBox(), MousePos)) {
-		if (!mouseOverAnyItem) { // Only change if the mouse wasn't already over an item
-			selectedItem = i;
-			mouseOverAnyItem = true;
+	// Update mouse position
+	MousePos.x = input->getMouseX();
+	MousePos.y = input->getMouseY();
+
+	for (int i = 0; i < 2; i++) {
+		if (Collision::checkBoundingBox(UIText[i].getCollisionBox(), MousePos)) {
+			if (!mouseOverAnyItem) { // Only change if the mouse wasn't already over an item
+				selectedItem = i;
+				mouseOverAnyItem = true;
+			}
 		}
-	} 
-}
+	}
 
-updateVisualFeedback(); // Update visual feedback at the end to reflect any changes
+	updateVisualFeedback(); // Update visual feedback at the end to reflect any changes
 }
 
 void PauseScreen::render()
 {
-	beginDraw();
+	//beginDraw();
 	window->draw(pause_sprite);
 	window->draw(Title);
 	for (int i = 0; i < 2; i++)
@@ -128,7 +128,7 @@ void PauseScreen::render()
 			window->draw(UIText[i].getDebugShape());
 		}
 	}
-	endDraw();
+	//endDraw();
 }
 
 void PauseScreen::MoveUp()
@@ -164,10 +164,4 @@ void PauseScreen::updateVisualFeedback()
 	}
 }
 
-void PauseScreen::beginDraw()
-{
-}
 
-void PauseScreen::endDraw()
-{
-}

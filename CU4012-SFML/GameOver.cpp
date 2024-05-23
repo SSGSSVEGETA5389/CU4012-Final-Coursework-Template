@@ -23,7 +23,7 @@ GameOver::GameOver(sf::RenderWindow* hwnd, Input* in, GameState* game)
 
 
 	Title.setFont(titleFont);
-	Title.setFillColor(sf::Color::Magenta);
+	Title.setFillColor(sf::Color::Red);
 	Title.setString("Game Over!");
 	Title.setOutlineColor(sf::Color::Black);
 	Title.setCharacterSize(70);
