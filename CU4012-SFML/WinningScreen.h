@@ -33,7 +33,7 @@ public:
 	sf::Font titleFont;
 
 	sf::Text Title;
-	UI UIText[2];
+	UI UIText[3];
 
 	void beginDraw();
 	void endDraw();
@@ -50,4 +50,3 @@ public:
 	bool mouseOverAnyItem;
 
 };
-

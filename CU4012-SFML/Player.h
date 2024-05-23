@@ -5,24 +5,25 @@
 class Player : public GameObject
 {
 	int health;
-	int speed; 
+	int speed;
 	sf::Texture HippoSpriteSheet;
-	Animation walk; 
-	Animation duck; 
-	Animation* currentAnimation; 
-	int numberOfCollectables; 
+	Animation walk;
+	Animation duck;
+	Animation* currentAnimation;
+	int numberOfCollectables;
 
-public: 
+public:
 
-	Player(); 
-	void handleInput(float dt) override; 
-	void update(float dt); 
+	Player();
+	void handleInput(float dt) override;
+	void update(float dt);
 
 	void AddCollectable(int c)
 	{
 		numberOfCollectables += c;
 	}
 
+	void resetCollectables() { numberOfCollectables = 0; }
 	int getCollectables()
 
 	{

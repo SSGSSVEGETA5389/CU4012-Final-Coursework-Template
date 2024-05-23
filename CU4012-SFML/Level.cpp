@@ -17,17 +17,16 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, sf::View* v, Worl
 		std::cout << "error loading font" << std::endl;
 	};
 
-	Player.setInput(input);
-	Player.setAudio(audioManager);
-
-	world->AddGameObject(Player);
-
 	audioManager->addMusic("sfx/Level_Music.ogg", "bgm");
 	audioManager->addSound("sfx/Jump_Sound.ogg", "jump");
 	audioManager->playMusicbyName("bgm");
 
-	// Background 
 
+	world->AddGameObject(Player);
+	Player.setInput(input);
+	Player.setAudio(audioManager);
+
+	// Background 
 	for (size_t i = 0; i < 3; i++)
 	{
 		bg[i].setPosition(bg[i].getSize().x * i, 0);
@@ -41,6 +40,51 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, sf::View* v, Worl
 		enemyArray[i].setAlive(true);
 		world->AddGameObject(enemyArray[i]);
 
+	}
+
+
+	//Collectables Collected Text
+	CollectablesCollectedText.setFont(font);
+	CollectablesCollectedText.setCharacterSize(24);
+	CollectablesCollectedText.setFillColor(sf::Color::Green);
+	CollectablesCollectedText.setPosition(window->getSize().x, 0);
+	CollectablesCollectedText.setString("Collected: ");
+
+	Init();
+
+}
+
+Level::~Level()
+{
+	//Making pointers null
+	window = nullptr;
+	input = nullptr;
+	gameState = nullptr;
+	view = nullptr;
+	world = nullptr;
+	tileManager = nullptr;
+	if (audioManager != nullptr) {
+		delete audioManager;
+		audioManager = nullptr;
+	}
+}
+
+
+void Level::Init()
+{
+
+	Player.setPosition(100, 0);
+	Player.resetCollectables();
+	// Write a for loop for setting the enemyArray variables texture 
+	for (size_t i = 0; i < 4; i++)
+	{
+		//enemyArray[i].setCustomTexture("gfx/Enemy.png");
+
+		if (!enemyArray[i].isAlive())
+		{
+			enemyArray[i].setAlive(true);
+			world->AddGameObject(enemyArray[i]);
+		}
 	}
 
 	//Enemy one 
@@ -59,28 +103,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, sf::View* v, Worl
 	enemyArray[3].setPosition(850, 600);
 	enemyArray[3].setVelocity(100, 0);
 
-	//Collectables Collected Text
-	CollectablesCollectedText.setFont(font);
-	CollectablesCollectedText.setCharacterSize(24);
-	CollectablesCollectedText.setFillColor(sf::Color::Green);
-	CollectablesCollectedText.setPosition(window->getSize().x, 0);
-	CollectablesCollectedText.setString("Collected: ");
 
-}
-
-Level::~Level()
-{
-	//Making pointers null
-	window = nullptr;
-	input = nullptr;
-	gameState = nullptr;
-	view = nullptr;
-	world = nullptr;
-	tileManager = nullptr;
-	if (audioManager != nullptr) {
-		delete audioManager;
-		audioManager = nullptr;
-	}
 }
 
 void Level::handleInput(float dt)
@@ -110,6 +133,13 @@ void Level::update(float dt)
 	sf::Vector2f viewSize = sf::Vector2f(window->getSize().x, window->getSize().y);
 
 	CollectablesCollectedText.setPosition(view->getCenter().x - viewSize.x / 14, view->getCenter().y - viewSize.y / 2);
+
+	//Move the view to follow the player
+	view->setCenter(view->getCenter().x, 520);
+	sf::Vector2f playerPosition = Player.getPosition();
+	float newX = std::max(playerPosition.x, view->getSize().x / 2.0f);
+	view->setCenter(newX, view->getCenter().y);
+	window->setView(*view);
 
 
 
@@ -158,17 +188,11 @@ void Level::update(float dt)
 	{
 		//Reset();
 		gameState->setCurrentState(State::WINNER);
+		window->setView(defaultView);
 	}
 
 
-
-	//Move the view to follow the player
-	view->setCenter(view->getCenter().x, 520);
-
-	sf::Vector2f playerPosition = Player.getPosition();
-	float newX = std::max(playerPosition.x, view->getSize().x / 2.0f);
-	view->setCenter(newX, view->getCenter().y);
-	window->setView(*view);
+	
 }
 
 // Render level

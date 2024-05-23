@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-	health = 100; 
+	health = 100;
 	speed = 200;
 
 	HippoSpriteSheet.loadFromFile("gfx/HippoSpriteSheet.png");

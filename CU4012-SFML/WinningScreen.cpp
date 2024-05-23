@@ -21,17 +21,17 @@ WinningScreen::WinningScreen(sf::RenderWindow* hwnd, Input* in, GameState* game)
 
 
 	Title.setFont(titleFont);
-	Title.setFillColor(sf::Color::Green);
+	Title.setFillColor(sf::Color::Black);
 	Title.setString("Thank you for playing my game!");
 	Title.setOutlineColor(sf::Color::Black);
-	Title.setCharacterSize(70);
-	Title.setPosition(500, 50);
+	Title.setCharacterSize(50);
+	Title.setPosition(500, 40);
 
-	
+
 
 	UIText[0].text.setFont(UIfont);
 	UIText[0].text.setFillColor(sf::Color::Red);
-	UIText[0].text.setString("Back to menu");
+	UIText[0].text.setString("Restart Level");
 	UIText[0].text.setPosition(sf::Vector2f(600, 120));
 	UIText[0].setCollisionBox(sf::FloatRect(600, 120, 100, 30));
 
@@ -42,6 +42,12 @@ WinningScreen::WinningScreen(sf::RenderWindow* hwnd, Input* in, GameState* game)
 	UIText[1].text.setString("Exit");
 	UIText[1].text.setPosition(sf::Vector2f(600, 150));
 	UIText[1].setCollisionBox(sf::FloatRect(600, 160, 100, 30));
+
+	UIText[2].text.setFont(UIfont);
+	UIText[2].text.setFillColor(sf::Color::Black);
+	UIText[2].text.setString("Game made by Fabian Craig-Allen");
+	UIText[2].text.setPosition(sf::Vector2f(600, 190));
+	UIText[2].setCollisionBox(sf::FloatRect(600, 160, 100, 30));
 
 	selectedItem = 0;
 
@@ -124,7 +130,7 @@ void WinningScreen::handleInput(float dt)
 			std::cout << "Restart has been Pressed" << std::endl;
 
 			//Pressing the restart button will be bought back to the menu.
-			gameState->setCurrentState(State::MENU);
+			gameState->setCurrentState(State::LEVEL);
 			break;
 		case 1:
 			std::cout << "Exit Button has been pressed" << std::endl;
@@ -147,7 +153,7 @@ void WinningScreen::render()
 	//beginDraw(); //Having this and endDraw(); breaks the winning screen state loading up, it also removed all the coins, but the tile editor can add them back.
 	window->draw(winner_sprite);
 	window->draw(Title);
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		window->draw(UIText[i].text);
 	}
@@ -176,3 +182,7 @@ void WinningScreen::endDraw()
 {
 	window->display();
 }
+
+
+
+

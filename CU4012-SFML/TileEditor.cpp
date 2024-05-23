@@ -11,6 +11,7 @@ TileEditor::TileEditor(sf::RenderWindow* hwnd, Input* in, GameState* game, sf::V
 	view = v;
 	world = w;
 	tileManager = tm;
+
 	if (!font.loadFromFile("font/arial.ttf")) {
 		std::cout << "error loading font" << std::endl;
 	};
@@ -21,6 +22,7 @@ TileEditor::TileEditor(sf::RenderWindow* hwnd, Input* in, GameState* game, sf::V
 	}
 	mouseCurosorGrab.setTexture(mouseCurosorTex);
 
+
 	// Set up tile manager
 	tileManager->setInput(input);
 	tileManager->setWindow(window);
@@ -28,6 +30,14 @@ TileEditor::TileEditor(sf::RenderWindow* hwnd, Input* in, GameState* game, sf::V
 	tileManager->setView(view);
 	tileManager->ShowDebugCollisionBox(true);
 
+	Init();
+}
+
+TileEditor::~TileEditor()
+{
+}
+void TileEditor::Init()
+{
 	if (!tileManager->loadTiles())
 	{
 		std::cout << "Tiles not found\n";
@@ -37,14 +47,8 @@ TileEditor::TileEditor(sf::RenderWindow* hwnd, Input* in, GameState* game, sf::V
 		std::cout << "Tiles loaded\n";
 	}
 
-	originalViewSize = v->getSize(); // Store the original size of the view
-
+	originalViewSize = view->getSize(); // Store the original size of the view
 }
-
-TileEditor::~TileEditor()
-{
-}
-
 void TileEditor::handleInput(float dt)
 {
 	if (input->isKeyDown(sf::Keyboard::Tab))
@@ -71,7 +75,7 @@ void TileEditor::update(float dt)
 
 void TileEditor::render()
 {
-	if(isDragging) window->draw(mouseCurosorGrab);
+	if (isDragging) window->draw(mouseCurosorGrab);
 	window->setView(*view);
 	tileManager->render(true);
 	tileManager->DrawImGui();

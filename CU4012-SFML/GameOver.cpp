@@ -105,7 +105,7 @@ void GameOver::MoveDown()
 	}
 
 }
-int GameOver::handleInput(float dt)
+void GameOver::handleInput(float dt)
 {
 	// Keyboard handling for menu navigation
 	if (input->isKeyDown(sf::Keyboard::Up)) {
@@ -123,7 +123,6 @@ int GameOver::handleInput(float dt)
 		switch (selectedItem) {
 		case 0:
 			std::cout << "Restart has been Pressed" << std::endl;
-
 			gameState->setCurrentState(State::LEVEL);
 			break;
 		case 1:
@@ -142,13 +141,12 @@ int GameOver::handleInput(float dt)
 		}
 	}
 
-	return 0; // Return value can be used if needed for further input handling logic
 
 }
 
 void GameOver::render()
 {
-	
+
 	window->draw(gameOver_sprite);
 	window->draw(Title);
 	for (int i = 0; i < 2; i++)
@@ -165,17 +163,5 @@ void GameOver::render()
 			window->draw(UIText[i].getDebugShape());
 		}
 	}
-	
-}
 
-
-
-
-void GameOver::beginDraw()
-{
-	window->clear(sf::Color(0, 0, 0));
-}
-void GameOver::endDraw()
-{
-	window->display();
 }

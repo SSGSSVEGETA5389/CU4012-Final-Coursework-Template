@@ -15,6 +15,7 @@ public:
 	~TileEditor();
 
 	void handleInput(float dt);
+	void Init();
 	void update(float dt);
 	void render();
 	void moveView(float dt);
@@ -28,7 +29,7 @@ private:
 
 	TileManager* tileManager;
 	sf::Font font;
-	
+
 	sf::Vector2f originalViewSize;
 
 	//moving the view variables
@@ -39,4 +40,3 @@ private:
 	sf::Sprite mouseCurosorGrab;
 
 };
-

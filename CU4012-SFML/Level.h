@@ -13,31 +13,33 @@
 #include <iostream>
 #include "Enemy.h"
 
-class Level : public BaseLevel{
+class Level : public BaseLevel {
 public:
-	Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* view ,World* w, TileManager* tm);
+	Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, sf::View* view, World* w, TileManager* tm);
 	~Level();
 
 	void handleInput(float dt) override;
 	void update(float dt) override;
 	void render();
+	void Init();
 	void adjustViewToWindowSize(unsigned int width, unsigned int height);
 	void Reset();
-	
+
+
 
 private:
 	// Default variables for level class.
 
 
 	//Player
-	Player Player; 
+	Player Player;
 	sf::Text CollectablesCollectedText;
 
 	//Enemy
 
-	Enemy e1; 
-	int NumberOfEnemies = 10; 
-	Enemy enemyArray[4]; 
+	Enemy e1;
+	int NumberOfEnemies = 10;
+	Enemy enemyArray[4];
 
 
 	//Background
@@ -46,14 +48,16 @@ private:
 
 	//Font 
 
-	sf::Font font; 
+	sf::Font font;
 
-	
+	sf::View defaultView;
 
-	
 
-	
-	
+
+
+
+
+
 };
 
 
