@@ -117,7 +117,7 @@ void Level::handleInput(float dt)
 		input->setKeyUp(sf::Keyboard::Tab);
 		gameState->setCurrentState(State::TILEEDITOR);
 	}*/
-	if (input->isKeyDown(sf::Keyboard::Escape))
+	if (input->isKeyDown(sf::Keyboard::Tab))
 	{
 		gameState->setCurrentState(State::PAUSE);
 
